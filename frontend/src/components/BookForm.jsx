@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   FormControl,
   FormLabel,
   Image,
@@ -38,7 +39,7 @@ export default function BookForm({ bookData }) {
         );
         toast({
           title: "Success",
-          description: "Book edited successfully",
+          description: "The book got a makeover without a single bad hair day! Book edited successfully",
           status: "success",
           duration: 5000,
           isClosable: true,
@@ -46,7 +47,7 @@ export default function BookForm({ bookData }) {
       } catch (error) {
         toast({
           title: "Error",
-          description: error.response.data.message || "Something went wrong",
+          description: error.response.data.message || "Well, that plan went south faster than a penguin on a water slide! Something went wrong",
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -59,7 +60,7 @@ export default function BookForm({ bookData }) {
       event.target.reset();
       toast({
         title: "Success",
-        description: "Book created successfully",
+        description: "The book was born like a champ, not a wrinkle in sight! Book created successfully",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -68,7 +69,7 @@ export default function BookForm({ bookData }) {
     } catch (error) {
       toast({
         title: "Error",
-        description: error.response.data.message || "Something went wrong",
+        description: error.response.data.message || "Well, that plan went south faster than a penguin on a water slide! Something went wrong",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -87,53 +88,51 @@ export default function BookForm({ bookData }) {
       <VStack spacing={4}>
         <FormControl>
           <FormLabel>Title</FormLabel>
-          <Input name="title" required defaultValue={bookData?.title} />
+          <Input name="title" required defaultValue={bookData?.title} borderColor="#647a88" />
         </FormControl>
         <FormControl>
           <FormLabel>Author</FormLabel>
-          <Input name="author" required defaultValue={bookData?.author} />
+          <Input name="author" required defaultValue={bookData?.author} borderColor="#647a88" />
         </FormControl>
         <FormControl>
           <FormLabel>Publisher</FormLabel>
-          <Input name="publisher" required defaultValue={bookData?.publisher} />
+          <Input name="publisher" required defaultValue={bookData?.publisher} borderColor="#647a88" />
         </FormControl>
         <FormControl>
           <FormLabel>Year</FormLabel>
-          <Input
-            name="year"
-            type="number"
-            required
-            defaultValue={bookData?.year}
-          />
+          <Input name="year" type="number" required defaultValue={bookData?.year} borderColor="#647a88" />
         </FormControl>
         <FormControl>
           <FormLabel>Pages</FormLabel>
-          <Input
-            name="pages"
-            type="number"
-            required
-            defaultValue={bookData?.pages}
-          />
+          <Input name="pages" type="number" required defaultValue={bookData?.pages} borderColor="#647a88" />
         </FormControl>
         {selectedImage && (
           <Image w={64} src={selectedImage} alt="Selected Image" />
         )}
         {!bookData?.image && (
-          <FormControl>
-            <FormLabel>Image</FormLabel>
-            <Input
-              name="image"
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                setSelectedImage(URL.createObjectURL(file));
-              }}
-            />
-          </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="image">Choose Picture</FormLabel>
+          <Input
+            id="image"
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              setSelectedImage(URL.createObjectURL(file));
+            }}
+            display="none"
+          />
+          <Center>
+            <Button fontSize="sm" as="label" bg="green.600" color="white" htmlFor="image" cursor="pointer">
+              Upload
+            </Button>
+          </Center>
+        </FormControl>
+        
         )}
 
-        <Button type="submit">{bookData ? "Edit Book" : "Create Book"}</Button>
+        <Button fontSize="sm" as="samp" bg="blue.900" color="white" type="submit">{bookData ? "Edit Book" : "Create Book"}</Button>
       </VStack>
     </form>
   );
