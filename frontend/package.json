@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "hw13",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -24,5 +24,9 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.2.0"
-  }
+  },
+  "description": "homework 13 msib batch 5 with Rakamin Academy",
+  "main": "index.js",
+  "author": "Wawah Sri Sunenti",
+  "license": "MIT"
 }

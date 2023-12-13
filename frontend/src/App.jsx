@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import BookDetails from "./pages/BooksDetail";
 import EditBookPage from "./pages/Editbook";
+import DeleteBookPage from "./pages/Deletebook";
 import Homepage from "./pages/Homepage";
 import NewBookPage from "./pages/NewBooks";
 import Register from "./pages/Register";
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -18,6 +21,12 @@ function App() {
           <Route path={"/newbook"} element={<NewBookPage />} />
           <Route path={"/books/:id"} element={<BookDetails />} />
           <Route path={"/editbook/:id"} element={<EditBookPage />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/"} element={<PrivateRoute element={<Homepage />} />} />
+          <Route path={"/newbook"} element={<PrivateRoute element={<NewBookPage />} />} />
+          <Route path={"/books/:id"} element={<PrivateRoute element={<BookDetails />} />} />
+          <Route path={"/editbook/:id"} element={<PrivateRoute element={<EditBookPage />} />} />
+          <Route path={"/deletebook/:id"} element={<PrivateRoute element={<DeleteBookPage />} />} />   
         </Routes>
       </Router>
     </VStack>
