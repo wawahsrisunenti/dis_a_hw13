@@ -47,7 +47,7 @@ const Navbar = () => {
     >
       <Link to="/">
         <Flex align="center" mr={5} cursor="pointer">
-          <Text fontSize="sm" fontWeight="bold">
+          <Text fontSize="md" as="i" color="yellow.200">
             My Website
           </Text>
         </Flex>
@@ -55,16 +55,17 @@ const Navbar = () => {
       <HStack>
         {isLogin && (
           <Link to="/newbook">
-            <Button colorScheme="blackAlpha">Create New Book</Button>
+            <Button fontSize="sm" as="samp" colorScheme="blackAlpha">Create New Book</Button>
           </Link>
         )}
         {!isLogin ? (
-          <Button onClick={onOpen} bg="#8ab79b" color="black">
-            Login
+          <Button fontSize="sm" as="samp" onClick={onOpen} bg="#8ab79b" color="black">
+          Login
           </Button>
         ) : (
           <Button
-            bg="#8ab79b"
+            fontSize="sm" as="samp"
+            bg="green.900"
             onClick={() => {
               window.localStorage.removeItem("token");
               setIsLogin(false);
